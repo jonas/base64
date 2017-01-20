@@ -16,12 +16,12 @@ This one is
 #### Getting Started
 
 Using SBT:
-```
-     libraryDependencies += "com.github.marklister" %% "base64" % "0.2.3"
+```sbt
+libraryDependencies += "com.github.marklister" %% "base64" % "0.2.3"
 ```
 or for scala-js
-```
-     libraryDependencies += "com.github.marklister" %%% "base64" % "0.2.3"
+```sbt
+libraryDependencies += "com.github.marklister" %%% "base64" % "0.2.3"
 ```
 
 #### API
@@ -48,8 +48,7 @@ Two encoding schemes are provided as default: `base64` and `base64Url`.  `base64
 
 Using implicits -- just make the encode/decode scheme available via an implicit:
  
- ```
- scala
+ ```scala
  implicit val encoding = base64Url
  ```
  
@@ -61,8 +60,7 @@ Padding is strict for the `base64` encode scheme and non-strict for `base64Url`
 
 To create a non strict scheme:
 
-```
-scala
+```scala
 implicit val encoding = base64.copy(strictPadding=false)
 ```
 
@@ -74,25 +72,22 @@ improving its efficiency.  Version 0.2.1 improves efficiency greatly but some le
 
 ####REPL example
 
-```
+```sbt
+[info] Starting scala interpreter...
+[info] 
+import com.github.marklister.base64.Base64._
+Welcome to Scala version 2.10.2 (OpenJDK Server VM, Java 1.7.0_51).
+Type in expressions to have them evaluated.
+Type :help for more information.
 
-    scala
-    [info] Starting scala interpreter...
-    [info] 
-    import com.github.marklister.base64.Base64._
-    Welcome to Scala version 2.10.2 (OpenJDK Server VM, Java 1.7.0_51).
-    Type in expressions to have them evaluated.
-    Type :help for more information.
-    
-    scala> "ABCDEFG".getBytes.toBase64 //Encodes Array[Byte]=>String
-    res0: String = QUJDREVGRw==
-    
-    scala> res0.toByteArray //Decodes base64 String=>Array[Byte]
-    res1: Array[Byte] = Array(65, 66, 67, 68, 69, 70, 71)
-    
-    scala> res1.sameElements("ABCDEFG".getBytes)
-    res2: Boolean = true
+scala> "ABCDEFG".getBytes.toBase64 //Encodes Array[Byte]=>String
+res0: String = QUJDREVGRw==
 
+scala> res0.toByteArray //Decodes base64 String=>Array[Byte]
+res1: Array[Byte] = Array(65, 66, 67, 68, 69, 70, 71)
+
+scala> res1.sameElements("ABCDEFG".getBytes)
+res2: Boolean = true
 ```
 
 
